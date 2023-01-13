@@ -1,3 +1,10 @@
+module SampleFunctions (
+    addMe, whatAge, whatAgeCase, 
+    factorial, isOdd, showListItems,
+    getFirstChar, areEqualStrings, getFnAddOne, 
+    doubleEvenNumbers
+) where
+
 addMe :: Int -> Int -> Int
 addMe x y = x + y
 
@@ -6,6 +13,14 @@ whatAge 16 = "You can drive"
 whatAge 18 = "You can vote"
 whatAge 21 = "You're an adult"
 whatAge _ = ":)" -- could replace _ with any other names
+
+-- Or use case statement
+whatAgeCase :: Int -> String
+whatAgeCase n = case n of
+    16 -> "You can drive"
+    18 -> "You can vote"
+    21 -> "You're an adult"
+    _ -> ":)"
 
 -- Recursion
 factorial :: Int -> Int
@@ -18,6 +33,7 @@ isOdd n
     | otherwise = True
 
 -- x:y
+-- x:xs if we don't know how many elements are in the list. 
 showListItems :: [Int] -> String
 showListItems [] = "Your list is empty"
 showListItems (x: []) = "Your list starts with " ++ show x
@@ -28,3 +44,23 @@ showListItems (x: xs) = "First item in your list is " ++ show x ++ " and then " 
 getFirstChar :: String -> String
 getFirstChar [] = "The string is empty"
 getFirstChar all@(x: xs) = "The first char of " ++ show all ++ " is " ++ [x]
+
+-- Recursion
+areEqualStrings :: String -> String -> Bool
+areEqualStrings [] [] = True
+areEqualStrings (x:xs) (y:ys) = x == y && areEqualStrings xs ys
+
+-- Function as parameter / return value
+getFnAddOne :: (Int -> Int) -> (Int -> Int)
+getFnAddOne fn x = fn x + 1
+
+-- Lambda
+dblOneToTen = map (\x -> x * 2 + 2) [1..10]
+
+-- If statement
+doubleEvenNumbers :: Int -> Int
+doubleEvenNumbers x = 
+    if (x `mod` 2 /= 0)
+        then x 
+        else x * 2
+
