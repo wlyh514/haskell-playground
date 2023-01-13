@@ -95,3 +95,58 @@ stanleyRoom = snd stanley
 names = ["A", "B", "Egg"]
 rooms = [5, 1, 4]
 namesNRooms = zip names rooms
+
+---- Custom types
+-- Enums
+data Campus = UTSG | UTSC | UTM 
+
+-- Type Classes
+
+instance Eq Campus where 
+    UTSG == UTSG = True
+    UTSC == UTSC = True
+    UTM == UTM = True
+    _ == _ = False
+
+instance Show Campus where
+    show UTSC = "University of Toronto Scarborough"
+    show UTSG = "University of Toronto St.George"
+    show UTM = "University of Toronto Mississauga"
+
+class EqAndShow a where
+    areEqual :: a -> a -> Bool
+    toString :: a -> String
+
+data Employee = Employee String Int
+    deriving Show
+e427 = Employee "Stanley" 427
+
+data Shape = Circle Double Double Double | Rectangle Double Double Double Double
+    deriving Show
+
+area :: Shape -> Double
+area ((Circle _ _ r)) = pi * r ^ 2
+area ((Rectangle x y x2 y2)) = abs (x2 - x) * abs (y2 - y)
+
+-- Type classes
+data Student = Student {
+    name :: String,
+    campus :: Campus,
+    studentNumber :: Int
+} deriving (Eq, Show)
+
+student1 = Student {
+    name = "a",
+    campus = UTSC, 
+    studentNumber = 514
+}
+
+student2 = Student {
+    name = "a",
+    campus = UTSC, 
+    studentNumber = 514
+}
+
+---- . and $
+sumVal = putStrLn (show(1 + 2))
+sumVal2 = putStrLn . show $ 1 + 2 -- equv
