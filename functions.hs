@@ -64,3 +64,11 @@ doubleEvenNumbers x =
         then x 
         else x * 2
 
+-- Where
+getGrade :: Double -> Double -> String
+getGrade score total
+    | ratio < 0.6 = "Fail"
+    | ratio < 0.8 = "Pass"
+    | ratio < 0.9 = "Good"
+    | otherwise = "A+"
+    where ratio = score / total
