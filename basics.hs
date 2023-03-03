@@ -52,7 +52,7 @@ floorVal = floor 9.99
 -- and sin, cos, tan, sinh etc. 
 notVal = not myBool 
 
----- Lists
+---- Lists (Homogenious)
 primeNumbers = [2, 3, 5, 7]
 morePrimes = primeNumbers ++ [11, 13, 17, 19]
 favNums = 5 : 1 : 4 : myInteger : []

@@ -5,8 +5,18 @@ module SampleFunctions (
     doubleEvenNumbers
 ) where
 
+-- All functions accept exactly one argument, return exactly one type
+
+-- Curry form, right associative. Function application left associative
+-- a -> b -> c  a -> (b -> c)
+-- (f x) y
+-- curry, uncurry
 addMe :: Int -> Int -> Int
 addMe x y = x + y
+
+-- Two-parameter curried function can be used as an operator
+s = 2 `addMe` 3
+plused = map (+2) [1, 2, 3] -- [3, 4, 5]
 
 whatAge :: Int -> String
 whatAge 16 = "You can drive"
@@ -72,3 +82,28 @@ getGrade score total
     | ratio < 0.9 = "Good"
     | otherwise = "A+"
     where ratio = score / total
+inc x = x + 1
+
+-- Type variables: parametric polymorphism
+-- For all type t, id :: t -> t
+id :: t -> t
+id x = x 
+
+-- CSP: constraint satisfaction problem
+choose :: (Bool, b, b) -> b
+choose (a, b, c) = if a then b else c
+
+x: xs = [1, 2, 3]
+
+swap (x, y) = (y, x)
+swap :: (a, a) -> (a, a)
+-- More restrictive type definition is acceptable
+-- swap(1, True) gives an error
+
+abs x | x >= 0 = x
+      | otherwise = -x
+
+len [] = 0
+len (_:xs) = 1 + len xs
+
+-- :t func in shell
